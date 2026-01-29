@@ -139,11 +139,12 @@ export default function ProjectIssuesPage() {
     if (!editing) return;
     setSaving(true);
     try {
+      const normalizedWorkingHour = updateForm.working_hour.replace(",", ".");
       const payload = isManager
         ? { assignee_id: Number(updateForm.assignee_id) }
         : {
             status: updateForm.status,
-            working_hour: Number(updateForm.working_hour),
+            working_hour: Number(normalizedWorkingHour),
           };
 
       await apiFetch(`/issues/${editing.id}`, {
@@ -449,17 +450,20 @@ export default function ProjectIssuesPage() {
                     Working Hour
                     <input
                       type="number"
-                      step="0.5"
+                      step="0.01"
                       min="0"
                       value={updateForm.working_hour}
-                      onChange={(event) =>
+                      onChange={(event) => {
+                        const rawValue = event.target.value;
+                        if (!/^\d*(?:[.,]\d{0,2})?$/.test(rawValue)) return;
+                        const normalizedValue = rawValue.replace(",", ".");
                         setUpdateForm((prev) => ({
                           ...prev,
-                          working_hour: event.target.value,
-                        }))
-                      }
+                          working_hour: normalizedValue,
+                        }));
+                      }}
                       className="mt-2 w-full rounded-2xl border border-border bg-surface-muted px-4 py-3 text-sm text-text focus:border-primary focus:outline-none focus:ring-4 focus:ring-ring"
-                      placeholder="Contoh: 4.5"
+                      placeholder="Contoh: 4.25"
                       required
                     />
                   </label>
