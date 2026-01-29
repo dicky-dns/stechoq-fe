@@ -55,7 +55,7 @@ export default function LoginPage() {
             Masuk untuk mengelola proyek, issue, dan report.
           </h1>
           <p className="max-w-xl text-lg text-text-muted">
-            Gunakan akun seeder dari backend: manager atau engineer. Semua data
+            Gunakan akun dummy dari backend: manager atau engineer. Semua data
             tersimpan di Laravel API.
           </p>
           <div className="rounded-3xl border border-border bg-surface/80 p-6 shadow-lg">
