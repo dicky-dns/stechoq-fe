@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stechoq Tracker Frontend
 
-## Getting Started
+Frontend Next.js untuk Stechoq Tracker (Laravel API).
 
-First, run the development server:
+## Fitur
+- Login + penyimpanan token di browser
+- Dashboard ringkasan project dan issue
+- Project list (table) + modal tambah/edit
+- Issue per project + modal tambah + modal update assignee
+- Report issues berdasarkan project + filter assignee/type/status
+- UI light Tailwind + toast error di pojok kanan atas
 
+## Prasyarat
+- Node.js 18+
+- Backend `stechoq-tracker` sudah jalan (default: http://localhost:8001)
+
+## Setup
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Menjalankan
+```bash
+npm run dev
+```
+App berjalan di `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
+Buat file `.env.local`:
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8001/api
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Akun Demo (Seeder Backend)
+- Manager: `manager1@example.com` / `password`
+- Engineer: `engineer1@example.com` / `password`
 
-## Learn More
+## Halaman Utama
+- `/login` - login
+- `/dashboard` - ringkasan
+- `/projects` - list project (akses issue dari sini)
+- `/projects/:id/issues` - issue per project
+- `/reports` - report issues per project dengan filter
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Catatan
+- Issue hanya bisa diakses melalui list project.
+- Manager membuat issue tanpa status (default backend) dan bisa assign assignee.
+- Update issue hanya untuk assignee (manager).
