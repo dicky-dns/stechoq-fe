@@ -26,7 +26,7 @@ npm run dev
 App berjalan di `http://localhost:3000`.
 
 ## Environment
-Buat file `.env.local`:
+Buat file `.env`:
 ```bash
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8001/api
 ```
